@@ -12,6 +12,7 @@ class UnsplashService {
     let accessKey = "8j7cdQS9HM1tfIomk_dUwqrIZ7wnymEECz6xk6OPP6k"
     let baseURL = "https://api.unsplash.com/"
 
+    @MainActor
     func getFeaturedPhotos() async -> [String] {
         let url = photosUrl()
         do {

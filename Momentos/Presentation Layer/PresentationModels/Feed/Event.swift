@@ -1,5 +1,5 @@
 //
-//  SharedPhoto.swift
+//  ViewEvent.swift
 //  Momentos
 //
 //  Created by Audrey SOBGOU on 08/01/2025.
@@ -8,11 +8,10 @@
 import Foundation
 import SwiftUI
 
-struct SharedPhoto: Identifiable {
+struct ViewEvent: Identifiable {
     let id = UUID()
     let authorName: String
     let contentSource: ContentSource
-    // let chatThread: Thread
 
     enum ContentSource {
         case url(URL)
@@ -21,12 +20,12 @@ struct SharedPhoto: Identifiable {
     }
 }
 
-extension SharedPhoto: Hashable {
+extension ViewEvent: Hashable {
     func hash(into hasher: inout Hasher) {
         return hasher.combine(id)
     }
 
-    static func == (lhs: SharedPhoto, rhs: SharedPhoto) -> Bool {
+    static func == (lhs: ViewEvent, rhs: ViewEvent) -> Bool {
         lhs.id == rhs.id
     }
 }

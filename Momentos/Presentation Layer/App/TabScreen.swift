@@ -11,7 +11,7 @@ struct TabScreen: View {
 
     var body: some View {
         TabView {
-            FeedEventScreen()
+            EventScreen()
                 .tabItem {
                     Image(systemName: "house")
                 }

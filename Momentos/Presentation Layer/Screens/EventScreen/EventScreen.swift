@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EventScreen: View {
 
-    @State var sharedPhotos: [SharedPhoto] = []
+    @StateObject var model = EventScreenModel()
 
     var body: some View {
 
@@ -18,18 +18,22 @@ struct EventScreen: View {
                 VStack {
                     listHeaderView
 
-                    ForEach(sharedPhotos, id: \.self) { sharedPhoto in
-                        NavigationLink(value: sharedPhoto) {
-                            EventItemView(sharedPhoto: sharedPhoto)
-                                .padding(.bottom)
+                    ForEach(model.events, id: \.self) { event in
+                        NavigationLink {
+                            FeedEventScreen()
+                        } label: {
+                            EventItemView(sharedEvent: event)
                         }
                     }
                 }
                 .padding()
-                /*.navigationDestination(for: SharedPhoto.self) { sharedPhoto in
-                    ThreadChatView(thread: sharedPhoto.chatThread)
-                }*/
+                .navigationDestination(for: PickerItem.self) { _ in
+                    FeedEventScreen()
+                }
             }
+        }
+        .task {
+            await model.load()
         }
     }
 
@@ -39,55 +43,13 @@ struct EventScreen: View {
             Spacer()
 
             NavigationLink {
-                SharePhotoView { image in
-                    sharedPhotos.append(
-                        SharedPhoto(authorName: SettingsUser.mockUser.name, contentSource: .image(image))
-                                    // chatThread: Thread())
-                    )
-                }
+                Text("Adding new event not implemented")
             } label: {
                 Image(systemName: "plus")
                     .font(.title)
             }
         }
         .padding()
-    }
-}
-
-struct EventItemView: View {
-
-    let sharedPhoto: SharedPhoto
-
-    var body: some View {
-        VStack {
-            switch sharedPhoto.contentSource {
-            case .url(let url):
-                AsyncImage(url: url)
-                    .frame(width: 350, height: 300)
-                    .clipShape(.rect(cornerRadius: 20))
-            case .image(let image):
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 350, height: 300)
-                    .clipShape(.rect(cornerRadius: 20))
-            case .embeddedAsset(let string):
-                Image(string)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 350, height: 300)
-                    .clipShape(.rect(cornerRadius: 20))
-            }
-
-            HStack {
-                Text("Photo shared by " + sharedPhoto.authorName)
-                Spacer()
-                // Label("\(sharedPhoto.chatThread.messages.count) messages", systemImage: "message")
-            }
-            .font(.caption)
-            .foregroundStyle(.gray)
-        }
-        .padding(.horizontal)
     }
 }
 
