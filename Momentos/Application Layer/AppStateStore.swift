@@ -1,5 +1,5 @@
 //
-//  AppSettingsStore.swift
+//  AppStateStore.swift
 //  Momentos
 //
 //  Created by Audrey SOBGOU on 09/01/2025.
@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum AppSettingsKeys: String {
+enum AppStateKeys: String {
     case userOnboarded
     case hasSuccessfullyEnterInvitationCode
 }
 
-protocol AppSettingsStore {
+protocol AppStateStore {
     var userDefaults: UserDefaults { get set }
-    var hasSuccessfullyEnterInvitationCode: Bool { get set }
     var userOnboarded: Bool { get set }
+    var hasSuccessfullyEnterInvitationCode: Bool { get set }
 }

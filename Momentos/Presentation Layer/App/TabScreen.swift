@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TabScreen: View {
-    @EnvironmentObject var store: AppStore
 
     var body: some View {
         TabView {

@@ -1,5 +1,5 @@
 //
-//  AppSettingsDefaults.swift
+//  AppStateDefaults.swift
 //  Momentos
 //
 //  Created by Audrey SOBGOU on 09/01/2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AppSettingsDefaults: AppSettingsStore {
+struct AppStateDefaults: AppStateStore {
     var userDefaults: UserDefaults
 
     init(userDefaults: UserDefaults) {
@@ -15,19 +15,19 @@ struct AppSettingsDefaults: AppSettingsStore {
     }
 
     var userOnboarded: Bool {
-        get { return value(for: AppSettingsKeys.userOnboarded.rawValue) ?? false }
-        set { updateDefaults(for: AppSettingsKeys.userOnboarded.rawValue, value: newValue) }
+        get { return value(for: AppStateKeys.userOnboarded.rawValue) ?? false }
+        set { updateDefaults(for: AppStateKeys.userOnboarded.rawValue, value: newValue) }
     }
 
     var hasSuccessfullyEnterInvitationCode: Bool {
-        get { return value(for: AppSettingsKeys.hasSuccessfullyEnterInvitationCode.rawValue) ?? false }
-        set { updateDefaults(for: AppSettingsKeys.hasSuccessfullyEnterInvitationCode.rawValue, value: newValue) }
+        get { return value(for: AppStateKeys.hasSuccessfullyEnterInvitationCode.rawValue) ?? false }
+        set { updateDefaults(for: AppStateKeys.hasSuccessfullyEnterInvitationCode.rawValue, value: newValue) }
     }
 }
 
 // MARK: Private methods
 
-extension AppSettingsDefaults {
+extension AppStateDefaults {
 
     private func updateDefaults(for key: String, value: Any) {
         userDefaults.set(value, forKey: key)
