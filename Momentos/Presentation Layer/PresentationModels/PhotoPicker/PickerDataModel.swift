@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class PickerDataModel: ObservableObject {
+final class PickerDataModel: ObservableObject, Sendable {
 
     @Published var items: [PickerItem] = []
 

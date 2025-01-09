@@ -16,3 +16,7 @@ struct SettingsEntryLine: View {
         Label(title, systemImage: systemImage)
     }
 }
+
+#Preview {
+    SettingsEntryLine(systemImage: "gear", title: "Tools")
+}

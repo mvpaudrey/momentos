@@ -93,4 +93,10 @@ struct FeedItemView: View {
 
 #Preview {
     FeedScreen()
+        .environmentObject(
+            AppStore(initialState: AppState(userOnboarded: true,
+                                            hasSuccessfullyEnterInvitationCode: false
+                                           )
+            )
+        )
 }
