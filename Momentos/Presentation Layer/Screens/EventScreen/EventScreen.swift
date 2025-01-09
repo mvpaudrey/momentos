@@ -1,13 +1,13 @@
 //
-//  FeedScreen.swift
+//  EventScreen.swift
 //  Momentos
 //
-//  Created by Audrey SOBGOU on 08/01/2025.
+//  Created by Audrey SOBGOU on 09/01/2025.
 //
 
 import SwiftUI
 
-struct FeedScreen: View {
+struct EventScreen: View {
 
     @State var sharedPhotos: [SharedPhoto] = []
 
@@ -20,7 +20,7 @@ struct FeedScreen: View {
 
                     ForEach(sharedPhotos, id: \.self) { sharedPhoto in
                         NavigationLink(value: sharedPhoto) {
-                            FeedItemView(sharedPhoto: sharedPhoto)
+                            EventItemView(sharedPhoto: sharedPhoto)
                                 .padding(.bottom)
                         }
                     }
@@ -54,7 +54,7 @@ struct FeedScreen: View {
     }
 }
 
-struct FeedItemView: View {
+struct EventItemView: View {
 
     let sharedPhoto: SharedPhoto
 
@@ -92,11 +92,5 @@ struct FeedItemView: View {
 }
 
 #Preview {
-    FeedScreen()
-        .environmentObject(
-            AppStore(initialState: AppState(userOnboarded: true,
-                                            hasSuccessfullyEnterInvitationCode: false
-                                           )
-            )
-        )
+    EventScreen()
 }

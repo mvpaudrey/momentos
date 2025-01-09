@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PickerItem: Identifiable {
+struct PickerItem: Identifiable, Hashable {
     let id = UUID()
     let url: URL
 }
